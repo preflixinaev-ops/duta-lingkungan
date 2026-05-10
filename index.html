@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clean & Care Class | SMAN 1 Batujaya</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #10b981;
+      --bg: #020617;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.08);
+      --text-gray: #94a3b8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      background-color: var(--bg); 
+      color: white; 
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.5;
+      overflow-x: hidden;
+      font-size: 14px; /* Font lebih kecil sesuai request */
+    }
+
+    .blob {
+      position: fixed; width: 300px; height: 300px;
+      background: var(--primary); filter: blur(100px);
+      opacity: 0.08; border-radius: 50%; z-index: -1;
+    }
+
+    nav {
+      padding: 20px 10%; display: flex; justify-content: space-between; align-items: center;
+      position: sticky; top: 0; backdrop-filter: blur(15px); z-index: 100;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo { font-size: 16px; font-weight: 700; color: var(--primary); letter-spacing: 1px; }
+
+    /* HERO SECTION DENGAN FOTO DUTA */
+    .hero { 
+      padding: 80px 10% 40px; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      text-align: center;
+    }
+    .duta-photo-main {
+      width: 140px;
+      height: 140px;
+      border-radius: 24px; /* Kotak estetik */
+      object-fit: cover;
+      border: 1px solid var(--primary);
+      margin-bottom: 25px;
+      box-shadow: 0 0 30px rgba(16, 185, 129, 0.2);
+    }
+    .hero h1 { 
+      font-family: 'Cormorant Garamond', serif; 
+      font-size: 48px; 
+      line-height: 1; 
+      margin-bottom: 15px;
+      font-style: italic;
+    }
+    .badge { 
+      background: rgba(16, 185, 129, 0.08); 
+      color: var(--primary); 
+      padding: 6px 16px; 
+      border-radius: 999px; 
+      font-size: 11px; 
+      font-weight: 700; 
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+
+    .section-title { text-align: center; margin: 60px 0 30px; }
+    .section-title h2 { font-size: 24px; letter-spacing: -0.5px; opacity: 0.9; }
+
+    .board-container { 
+      margin: 0 10% 60px; 
+      background: var(--card-bg); 
+      border-radius: 20px; 
+      padding: 30px; 
+      border: 1px solid var(--border); 
+      overflow-x: auto;
+    }
+    table { width: 100%; border-collapse: collapse; min-width: 450px; }
+    th { text-align: left; padding: 12px; color: var(--text-gray); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border); }
+    td { padding: 15px 12px; border-bottom: 1px solid var(--border); font-size: 13px; }
+    .rank { font-weight: 700; color: var(--primary); }
+    
+    .status-badge { 
+      padding: 4px 10px; 
+      border-radius: 6px; 
+      font-size: 10px; 
+      font-weight: 700; 
+      text-transform: uppercase;
+    }
+
+    /* APRESIASI KELAS - ELEGAN KOTAK */
+    .ambassador-section { padding: 60px 10%; text-align: center; }
+    .class-card { 
+      max-width: 450px; margin: 0 auto; background: white; color: var(--bg); 
+      padding: 15px; border-radius: 20px; box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+    }
+    .class-img { 
+      width: 100%; height: 260px; border-radius: 14px; 
+      background: #f8fafc; margin-bottom: 15px; overflow: hidden;
+    }
+    .class-img img { width: 100%; height: 100%; object-fit: cover; }
+    
+    #winnerName { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    #winnerQuote { font-size: 12px; opacity: 0.6; line-height: 1.4; padding: 0 10px; }
+
+    footer { padding: 40px 10%; border-top: 1px solid var(--border); text-align: center; color: var(--text-gray); font-size: 11px; letter-spacing: 0.5px; opacity: 0.6; }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 36px; }
+      nav { padding: 15px 5%; }
+      .board-container { padding: 20px; margin: 0 5% 60px; }
+      .hero { padding: 60px 5% 30px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="blob" style="top: -50px; right: -50px;"></div>
+  
+  <nav>
+    <div class="logo">SMAN 1 BATUJAYA</div>
+    <div style="font-size: 10px; opacity: 0.5; letter-spacing: 1px;">DUTA LINGKUNGAN</div>
+  </nav>
+
+  <section class="hero">
+    <img src="photo.jpg" alt="Duta Lingkungan" class="duta-photo-main" onerror="this.src='https://placehold.co/400x400/10b981/white?text=Duta+Lingkungan'">
+    <div class="badge">Environmental Initiative</div>
+    <h1>Clean & Care Class</h1>
+    <p style="color: var(--text-gray); font-size: 13px; max-width: 400px; margin: 0 auto;">Membentuk karakter disiplin melalui tanggung jawab kebersihan lingkungan belajar.</p>
+  </section>
+
+  <div class="section-title"><h2>Clean Score Board</h2></div>
+  <div class="board-container">
+    <table>
+      <thead>
+        <tr><th>Rank</th><th>Kelas</th><th>Skor</th><th>Kategori</th></tr>
+      </thead>
+      <tbody id="scoreTable">
+        </tbody>
+    </table>
+  </div>
+
+  <section class="ambassador-section">
+    <div class="section-title">
+      <h2 style="margin-bottom: 5px;">Class of The Month</h2>
+      <p style="color: var(--text-gray); font-size: 12px;">Penghargaan konsistensi kebersihan bulan ini</p>
+    </div>
+
+    <div class="class-card">
+      <div class="class-img">
+        <img id="winnerImg" src="" style="display:none;">
+        <div id="imgPlaceholder" style="padding-top: 110px; color: #94a3b8; font-size: 12px;">Menampilkan Dokumentasi...</div>
+      </div>
+      <h3 id="winnerName">...</h3>
+      <p id="winnerQuote">"..."</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Duta Lingkungan SMAN 1 Batujaya</p>
+    <p style="margin-top: 5px;">Developed by Farid & Saskia</p>
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, collection, onSnapshot, query, orderBy, doc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBVSNnI0ZUE7QP9J0KLJ8ulGEp58RQU-v8",
+      authDomain: "farid-dda74.firebaseapp.com",
+      projectId: "farid-dda74",
+      storageBucket: "farid-dda74.firebasestorage.app",
+      messagingSenderId: "240445607623",
+      appId: "1:240445607623:web:622f8d48c0236660c4f8e2"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    onSnapshot(query(collection(db, "scoreboard"), orderBy("skor", "desc")), (snap) => {
+      const table = document.getElementById('scoreTable');
+      table.innerHTML = "";
+      let i = 1;
+      snap.forEach(doc => {
+        const d = doc.data();
+        const color = d.skor >= 90 ? "#34d399" : "#3b82f6";
+        const bg = d.skor >= 90 ? "rgba(52, 211, 153, 0.08)" : "rgba(59, 130, 246, 0.08)";
+        table.innerHTML += `
+          <tr>
+            <td class="rank">#${i++}</td>
+            <td style="font-weight: 600;">${d.kelas}</td>
+            <td>${d.skor} <span style="opacity:0.4; font-size:10px;">PTS</span></td>
+            <td><span class="status-badge" style="color:${color}; background:${bg}">${d.skor >= 90 ? 'Excellent' : 'Good'}</span></td>
+          </tr>`;
+      });
+    });
+
+    onSnapshot(doc(db, "apresiasi", "bulan_ini"), (docSnap) => {
+      if (docSnap.exists()) {
+        const d = docSnap.data();
+        document.getElementById('winnerName').innerText = d.namaKelas;
+        document.getElementById('winnerQuote').innerText = d.quote ? d.quote : "Konsistensi adalah kunci kebersihan.";
+        const img = document.getElementById('winnerImg');
+        img.src = d.fotoUrl;
+        img.style.display = "block";
+        document.getElementById('imgPlaceholder').style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
