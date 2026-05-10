@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Update - Clean & Care</title>
+    <style>
+        body { background: #020617; color: white; font-family: sans-serif; padding: 20px; }
+        .box { background: #1e293b; padding: 20px; border-radius: 15px; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.1); }
+        input, textarea { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: none; box-sizing: border-box; background: #0f172a; color: white; border: 1px solid #334155; }
+        button { width: 100%; padding: 15px; background: #10b981; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 5px; }
+        h3 { margin-top: 0; color: #10b981; }
+    </style>
+</head>
+<body>
+    <h2 style="text-align:center;">Duta Admin Panel</h2>
+    
+    <div class="box">
+        <h3>1. Update Skor Kelas</h3>
+        <input type="text" id="kelas" placeholder="Nama Kelas (Contoh: X.10)">
+        <input type="number" id="skor" placeholder="Skor (0-100)">
+        <button id="btnSkor">Update Skor</button>
+    </div>
+
+    <div class="box">
+        <h3>2. Ganti Class of The Month</h3>
+        <input type="text" id="namaKelasPemenang" placeholder="Nama Kelas Pemenang">
+        <input type="text" id="fotoUrl" placeholder="Link Foto (Imgur/Pinterest/Discord)">
+        <textarea id="quoteKelas" placeholder="Quote Apresiasi..."></textarea>
+        <button id="btnApresiasi" style="background: #3b82f6;">Update Apresiasi</button>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBVSNnI0ZUE7QP9J0KLJ8ulGEp58RQU-v8",
+            authDomain: "farid-dda74.firebaseapp.com",
+            projectId: "farid-dda74",
+            storageBucket: "farid-dda74.firebasestorage.app",
+            messagingSenderId: "240445607623",
+            appId: "1:240445607623:web:622f8d48c0236660c4f8e2"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Fungsi Update Skor
+        document.getElementById('btnSkor').onclick = async () => {
+            const k = document.getElementById('kelas').value.trim();
+            const s = parseInt(document.getElementById('skor').value);
+            if(!k || isNaN(s)) return alert("Isi data skor!");
+            
+            try {
+                await setDoc(doc(db, "scoreboard", k), { 
+                    kelas: k, 
+                    skor: s, 
+                    updatedAt: serverTimestamp() 
+                });
+                alert("Berhasil simpan skor " + k);
+                document.getElementById('kelas').value = "";
+                document.getElementById('skor').value = "";
+            } catch (e) { alert("Error: " + e.message); }
+        };
+
+        // Fungsi Update Apresiasi
+        document.getElementById('btnApresiasi').onclick = async () => {
+            const n = document.getElementById('namaKelasPemenang').value.trim();
+            const f = document.getElementById('fotoUrl').value.trim();
+            const q = document.getElementById('quoteKelas').value.trim();
+            if(!n || !f) return alert("Isi nama kelas & link foto!");
+
+            try {
+                await setDoc(doc(db, "apresiasi", "bulan_ini"), { 
+                    namaKelas: n, 
+                    fotoUrl: f, 
+                    quote: q, 
+                    updatedAt: serverTimestamp() 
+                });
+                alert("Apresiasi Berhasil diupdate!");
+            } catch (e) { alert("Error: " + e.message); }
+        };
+    </script>
+</body>
+</html>
